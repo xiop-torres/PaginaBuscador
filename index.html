@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" href="img/hospital.png">
+
+</head>
+<body>
+    <header>
+        <img src ="img/logominsa.jpg" href ="styles.css"
+        >
+       <section>
+           <h1>Hospital Santa Rosa</h1>
+       </section>
+       
+       <div class ="conte">
+         
+            <a href="#">Buscador de pacientes</a>
+            
+        </div>
+    </header>
+    <div class="container mt-5">
+        
+        <input type ="text" id= "formulario" class="form-control my-2">
+        <button class ="btn btn-info mb-2" id="boton">Buscar</button>
+        <ul >
+            <li type="circle" id="resultado"></li>
+            
+        </ul>
+    </div>
+    <script>
+        const pacientes=[
+            {nombre:'Gustavo Nieto Bustos',edad : 80 , dni: 123456789},
+            {nombre:'Luis Puerto Navia',edad :40 , dni:789456123 },
+            {nombre:'Orlando Guzman',edad :55, dni: 1594878263 },
+            {nombre:'Sebastian Hernandez',edad :15,dni :45679159 },
+            {nombre:'Angel Mendoza ',edad :12, dni: 123456789},
+            {nombre:'Daniela Muñoz Lizarazo',edad :551,dni: 123456789 },
+            {nombre:'Luis Fino Andrade',edad :96,dni: 123456789 },
+            {nombre:'Hugo Andres Camargo Vargas',edad :59 , dni:456789123},
+            {nombre:'Juan Ferando Barjuch Moreno',edad :5,dni: 123456789 },
+            {nombre:'Laura Diaz',edad :4,dni: 123456789 },
+            {nombre:'Juliana',edad :50,dni: 123456789 },
+            {nombre:'Jua Camilo Ortega Peña',edad :40 ,dni :123456789 },
+            {nombre:'Sebastian Ricardo Vega Castillo',edad :55,dni: 123456789 },
+            {nombre:'Monica Delta Gomez',edad :15,dni: 123456789 },
+            {nombre:'Luis Fernanda Campos',edad :12 ,dni: 123456789},
+            {nombre:'Gustavo Torres',edad :551,dni: 123456789 },
+            {nombre:'Pedro Castillo',edad :96,dni: 123456789 },
+            {nombre:'Marcela Garcia ',edad :59 ,dni: 123456789},
+            {nombre:'Maria Alejandra',edad :5,dni: 123456789 },
+            {nombre:'Maria Jose',edad :4 ,dni: 123456789},
+
+        ]
+        const formulario=document.querySelector('#formulario');
+        const boton =document.querySelector('#boton');
+        const resultado = document.querySelector('#resultado')
+
+        const filtrar = ()=>{
+            //console.log(formulario.value);
+
+            resultado.innerHTML='';
+
+            const texto = formulario.value.toLowerCase();
+
+            for(let paciente of pacientes){
+                let nombre=paciente.nombre.toLowerCase();
+                if(nombre.indexOf(texto)!==-1){
+                    resultado.innerHTML+=`
+                        <li>${paciente.nombre} - Edad: ${paciente.edad} - DNI: ${paciente.dni}</li>
+                    `
+                }
+            }
+            if(resultado.innerHTML=== ''){
+            resultado.innerHTML+=`
+                        <li>Paciente no encontrado ..</li>
+                    `
+            }
+        }
+        boton.addEventListener('click' ,filtrar)
+        formulario.addEventListener('keyup',filtrar)
+
+        filtrar();
+        
+
+    </script>
+</body>
+</html>
